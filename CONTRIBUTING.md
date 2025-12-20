@@ -167,7 +167,7 @@ Full license details: [LICENSE.md](LICENSE.md)
 
 ## 💬 Community & Support
 
-- **Discussions:** [GitHub Discussions →](https://github.com/project-skuba/open/discussions)
+- **Discussions:** [GitHub Discussions →](https://github.com/lazuli-collective/open/discussions)
 - **Issues:** Use GitHub Issues for bugs, schema suggestions, or data corrections.
 - **Website:** [open.skuba.app](https://open.skuba.app)
 

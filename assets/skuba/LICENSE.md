@@ -19,4 +19,4 @@ These assets are provided for reference purposes to ensure consistent brand repr
 ---
 
 For questions regarding Skuba brand assets, please open an issue at:  
-https://github.com/project-skuba/open
+https://github.com/lazuli-collective/open

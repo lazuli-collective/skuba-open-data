@@ -7,7 +7,7 @@ This repository powers [open.skuba.app](https://open.skuba.app) — the canonica
 
 ## 🧭 Purpose
 
-`project-skuba/open` provides:
+`lazuli-collective/skuba-open-data` provides:
 
 - **Public Datasets** – Canonical, versioned JSON datasets for dive certifications, agencies, and other scuba-related information.
 - **Schemas & Standards** – JSON Schema definitions for validating and interoperating with Skuba's open data formats.
@@ -171,7 +171,7 @@ Each dataset and schema is versioned semantically (`v1.0.0`, `v1.1.0`, …).
 Breaking changes will increment the major version.
 
 All changes are tracked via pull requests and validated in CI.
-Community suggestions are discussed in [Discussions](https://github.com/project-skuba/open/discussions).
+Community suggestions are discussed in [Discussions](https://github.com/lazuli-collective/open/discussions).
 
 ---
 
@@ -181,5 +181,5 @@ Community suggestions are discussed in [Discussions](https://github.com/project-
 
 ---
 
-**Maintained by:** [Project Skuba](https://github.com/project-skuba)
+**Maintained by:** [Project Skuba](https://github.com/lazuli-collective)
 **Canonical URL:** [https://open.skuba.app](https://open.skuba.app)
