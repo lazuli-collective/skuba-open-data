@@ -1,0 +1,95 @@
+{
+  "$id": "https://open.skuba.app/schemas/cylinders/cylinders.schema.v1.0.0.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Scuba Diving Common Cylinder Types Database",
+  "description": "A collection of common scuba diving cylinder types and their specifications.",
+  "type": "object",
+  "required": ["$schema", "cylinders"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "The URI of the schema for validation"
+    },
+    "cylinders": {
+      "type": "array",
+      "description": "List of cylinders",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "commonName",
+          "waterVolumeL",
+          "workingPressureBar",
+          "material",
+          "emptyWeightKg",
+          "buoyancyKg"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the cylinder",
+            "pattern": "^[a-z0-9_.-]+$"
+          },
+          "commonName": {
+            "type": "string",
+            "description": "Common display name for the cylinder"
+          },
+          "waterVolumeL": {
+            "type": "number",
+            "description": "Internal water volume in liters",
+            "minimum": 0
+          },
+          "workingPressureBar": {
+            "type": "number",
+            "description": "Rated working pressure in bar",
+            "minimum": 0
+          },
+          "material": {
+            "type": "string",
+            "enum": ["steel", "aluminum", "composite", "carbon_fiber"],
+            "description": "Material of the cylinder"
+          },
+          "typicalUse": {
+            "type": "string",
+            "description": "Description of typical usage scenarios"
+          },
+          "emptyWeightKg": {
+            "type": "number",
+            "description": "Weight of the empty cylinder in kg (without valve usually, but context dependent)",
+            "minimum": 0
+          },
+          "buoyancyKg": {
+            "type": "object",
+            "description": "Buoyancy characteristics in salt water",
+            "required": ["full", "at50bar", "empty"],
+            "properties": {
+              "full": {
+                "type": "number",
+                "description": "Buoyancy when full (kg)"
+              },
+              "at50bar": {
+                "type": "number",
+                "description": "Buoyancy at 50 bar (kg)"
+              },
+              "empty": {
+                "type": "number",
+                "description": "Buoyancy when empty (kg)"
+              }
+            }
+          },
+          "brands": {
+            "type": "array",
+            "description": "Common manufacturers or brands for this cylinder type",
+            "items": {
+              "type": "string"
+            }
+          },
+          "notes": {
+            "type": "string",
+            "description": "Additional notes about the cylinder"
+          }
+        }
+      }
+    }
+  }
+}

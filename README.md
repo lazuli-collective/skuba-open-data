@@ -25,6 +25,7 @@ open/
 ├── datasets/
 │ ├── certifications.json
 │ ├── agencies.json
+│ ├── cylinders.json
 │ └── LICENSE.md
 │
 ├── schemas/
@@ -32,6 +33,8 @@ open/
 │ │ └── dive-certifications.schema.v1.0.0.json
 │ ├── agencies/
 │ │ └── agencies.schema.v1.0.0.json
+│ ├── cylinders/
+│ │ └── cylinders.schema.v1.0.0.json
 │ └── LICENSE.md
 │
 ├── assets/
@@ -73,6 +76,8 @@ open/
 | **Dive Certifications Schema**  | JSON Schema for validating certification data                      | [View Schema →](https://open.skuba.app/schemas/certifications/dive-certifications.schema.v1.0.0.json) |
 | **Agencies Dataset**            | List of recognized certifying agencies                             | [View JSON →](https://open.skuba.app/datasets/agencies.json)                                          |
 | **Agencies Schema**             | JSON Schema for validating agencies data                           | [View Schema →](https://open.skuba.app/schemas/agencies/agencies.schema.v1.0.0.json)                  |
+| **Cylinder Database**           | Specifications for common scuba cylinders                          | [View JSON →](https://open.skuba.app/datasets/cylinders.json)                                         |
+| **Cylinder Schema**             | JSON Schema for validating cylinder data                           | [View Schema →](https://open.skuba.app/schemas/cylinders/cylinders.schema.v1.0.0.json)                |
 | **Agency Logos**                | Collection of scuba diving agency logos                            | [View Logos →](https://open.skuba.app/assets/agency-logos/)                                           |
 | **Dataset Documentation**       | Beginner-friendly guide to understanding and contributing          | [View Guide →](https://open.skuba.app/docs/DATASETS.md)                                               |
 | **Docs**                        | Design guidelines and documentation                                | [View Docs →](https://open.skuba.app/docs/)                                                           |

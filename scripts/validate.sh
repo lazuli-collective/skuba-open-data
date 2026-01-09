@@ -106,6 +106,8 @@ check_duplicate_ids() {
         array_key="agencies"
     elif [[ "$json_file" == *"certifications"* ]]; then
         array_key="certifications"
+    elif [[ "$json_file" == *"cylinders"* ]]; then
+        array_key="cylinders"
     else
         # Try to find any array that contains objects with 'id' fields
         array_key=$(jq -r 'to_entries | map(select(.value | type == "array" and (.[0]? | has("id")))) | .[0].key // empty' "$json_file" 2>/dev/null || echo "")
@@ -281,6 +283,49 @@ check_unique_cert_names_and_abbrs_per_agency() {
     
     if [ $has_duplicates -eq 0 ]; then
         echo -e "${GREEN}✅ All certification names and abbreviations are unique within each agency${NC}"
+    fi
+    
+    echo ""
+}
+
+# Function to check for unique cylinder common names
+check_unique_cylinder_common_names() {
+    local json_file="$1"
+    
+    # Only check cylinders files
+    if [[ "$json_file" != *"cylinders"*.json ]]; then
+        return 0
+    fi
+    
+    echo -e "${YELLOW}🔎 Checking for unique cylinder common names in: ${json_file}${NC}"
+    
+    local has_duplicates=0
+    
+    # Check for duplicate common names
+    local duplicate_names
+    duplicate_names=$(jq -r '.cylinders[]? | .commonName? // empty' "$json_file" 2>/dev/null | sort | uniq -d || echo "")
+    
+    if [ -n "$duplicate_names" ] && [ "$duplicate_names" != "" ]; then
+        echo -e "${RED}❌ ERROR: Duplicate cylinder common names found:${NC}"
+        echo "$duplicate_names" | while read -r dup_name; do
+            if [ -n "$dup_name" ]; then
+                echo -e "${RED}   - ${dup_name}${NC}"
+                # Show which cylinders have this name
+                local cylinders_with_name
+                cylinders_with_name=$(jq -r ".cylinders[]? | select(.commonName == \"$dup_name\") | .id" "$json_file" 2>/dev/null || echo "")
+                echo "$cylinders_with_name" | while read -r cylinder_id; do
+                    if [ -n "$cylinder_id" ]; then
+                        echo -e "${RED}     Used by: ${cylinder_id}${NC}"
+                    fi
+                done
+            fi
+        done
+        has_duplicates=1
+        VALIDATION_FAILED=1
+    fi
+    
+    if [ $has_duplicates -eq 0 ]; then
+        echo -e "${GREEN}✅ All cylinder common names are unique${NC}"
     fi
     
     echo ""
@@ -494,6 +539,7 @@ main() {
                 check_duplicate_ids "$json_file"
                 check_unique_agency_names_and_abbrs "$json_file"
                 check_unique_cert_names_and_abbrs_per_agency "$json_file"
+                check_unique_cylinder_common_names "$json_file"
                 check_agency_logos "$json_file"
             fi
         done <<< "$json_files"
